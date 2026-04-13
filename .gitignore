@@ -1,0 +1,31 @@
+# Dépendances
+node_modules/
+
+# Variables d'environnement
+.env
+.env.local
+.env.*.local
+
+# Turso
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editeurs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Build
+dist/
+build/
