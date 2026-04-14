@@ -31,306 +31,23 @@
   </script>
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <style>
-    :root {
-      color-scheme: light;
-    }
-    body {
-      background: #ffffff;
-    }
-    .hero-gradient {
-      background:
-        radial-gradient(1200px 480px at 15% -5%, rgba(1, 189, 68, 0.14), transparent 60%),
-        radial-gradient(900px 380px at 90% -20%, rgba(15, 23, 42, 0.08), transparent 60%),
-        #ffffff;
-    }
-    .card-surface {
-      background: #ffffff;
-      border: 1px solid rgba(15, 23, 42, 0.08);
-      box-shadow: 0 18px 40px -32px rgba(15, 23, 42, 0.5);
-      transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
-    }
-    .card-surface:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 24px 50px -30px rgba(15, 23, 42, 0.35);
-      border-color: rgba(15, 23, 42, 0.12);
-    }
-    .glass {
-      background: rgba(255, 255, 255, 0.75);
-      backdrop-filter: blur(16px);
-      border: 1px solid rgba(15, 23, 42, 0.06);
-    }
-    .logo-box {
-      background: linear-gradient(135deg, rgba(1, 189, 68, 0.15) 0%, rgba(1, 189, 68, 0.05) 100%);
-      border: 2px solid rgba(1, 189, 68, 0.25);
-      box-shadow: 0 8px 32px rgba(1, 189, 68, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.5);
-      transition: all 200ms ease;
-    }
-    .logo-box:hover {
-      border-color: rgba(1, 189, 68, 0.4);
-      box-shadow: 0 12px 40px rgba(1, 189, 68, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.5);
-      transform: translateY(-1px);
-    }
-    .filter-input, .filter-select {
-      background: #ffffff;
-      border: 1.5px solid rgba(15, 23, 42, 0.1);
-      transition: all 160ms ease;
-    }
-    .filter-input:focus, .filter-select:focus {
-      border-color: #01BD44;
-      box-shadow: 0 0 0 3px rgba(1, 189, 68, 0.15);
-    }
-    .filter-label {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-    }
-    .filter-group {
-      padding: 16px;
-      background: rgba(1, 189, 68, 0.04);
-      border: 1px solid rgba(1, 189, 68, 0.12);
-      border-radius: 16px;
-      transition: all 160ms ease;
-    }
-    .filter-group:hover {
-      background: rgba(1, 189, 68, 0.08);
-      border-color: rgba(1, 189, 68, 0.2);
-    }
-    .filter-actions {
-      display: flex;
-      gap: 12px;
-    }
-    .btn-primary {
-      background: linear-gradient(135deg, #01BD44 0%, #00a838 100%);
-      color: white;
-      border: none;
-      font-weight: 600;
-      transition: all 200ms ease;
-      box-shadow: 0 4px 16px rgba(1, 189, 68, 0.25);
-    }
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(1, 189, 68, 0.35);
-    }
-    .btn-primary:active {
-      transform: translateY(0);
-    }
-    .btn-secondary {
-      background: #ffffff;
-      border: 1.5px solid rgba(15, 23, 42, 0.15);
-      color: #0f172a;
-      font-weight: 600;
-      transition: all 200ms ease;
-    }
-    .btn-secondary:hover {
-      border-color: rgba(15, 23, 42, 0.3);
-      background: rgba(15, 23, 42, 0.03);
-    }
-    .filter-tip {
-      background: linear-gradient(135deg, rgba(1, 189, 68, 0.1) 0%, rgba(1, 189, 68, 0.05) 100%);
-      border-left: 3px solid #01BD44;
-      padding: 12px 14px;
-      border-radius: 8px;
-      font-size: 12px;
-      color: #065f2a;
-      line-height: 1.5;
-    }
-    .section-header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 20px;
-    }
-    .section-header-icon {
-      width: 28px;
-      height: 28px;
-      background: linear-gradient(135deg, rgba(1, 189, 68, 0.2) 0%, rgba(1, 189, 68, 0.05) 100%);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #01BD44;
-      flex-shrink: 0;
-    }
-    .topics-list {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .topic-item {
-      padding: 12px 14px;
-      background: linear-gradient(135deg, rgba(1, 189, 68, 0.08) 0%, rgba(1, 189, 68, 0.02) 100%);
-      border: 1px solid rgba(1, 189, 68, 0.15);
-      border-radius: 12px;
-      font-size: 14px;
-      color: #0f172a;
-      font-weight: 500;
-      transition: all 160ms ease;
-      cursor: default;
-    }
-    .topic-item:hover {
-      background: linear-gradient(135deg, rgba(1, 189, 68, 0.12) 0%, rgba(1, 189, 68, 0.05) 100%);
-      border-color: rgba(1, 189, 68, 0.25);
-      transform: translateX(4px);
-    }
-    .battery-container {
-      background: linear-gradient(135deg, rgba(14, 116, 144, 0.08) 0%, rgba(14, 116, 144, 0.02) 100%);
-      border: 2px solid rgba(14, 116, 144, 0.15);
-      border-radius: 20px;
-      padding: 24px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 200ms ease;
-      min-height: 160px;
-    }
-    .battery-container:hover {
-      background: linear-gradient(135deg, rgba(14, 116, 144, 0.12) 0%, rgba(14, 116, 144, 0.05) 100%);
-      border-color: rgba(14, 116, 144, 0.3);
-      transform: scale(1.02);
-    }
-    .battery-container img {
-      filter: drop-shadow(0 4px 12px rgba(14, 116, 144, 0.2));
-      transition: all 200ms ease;
-    }
-    .battery-container:hover img {
-      filter: drop-shadow(0 6px 16px rgba(14, 116, 144, 0.3));
-      transform: scale(1.05);
-    }
-    .logs-header {
-      background: linear-gradient(135deg, rgba(1, 189, 68, 0.08) 0%, rgba(1, 189, 68, 0.02) 100%);
-      border: 1px solid rgba(1, 189, 68, 0.1);
-      border-radius: 18px;
-      padding: 24px;
-      margin-bottom: 24px;
-    }
-    .logs-header h2 {
-      font-size: 20px;
-      font-weight: 700;
-      color: #0f172a;
-      margin-bottom: 8px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .logs-header p {
-      color: #64748b;
-      font-size: 14px;
-      line-height: 1.6;
-    }
-    .logs-title-icon {
-      width: 32px;
-      height: 32px;
-      background: linear-gradient(135deg, #01BD44 0%, #00a838 100%);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      flex-shrink: 0;
-    }
-    .log-item {
-      background: #ffffff;
-      border: 1.5px solid rgba(15, 23, 42, 0.08);
-      border-radius: 14px;
-      padding: 16px;
-      transition: all 200ms ease;
-    }
-    .log-item:hover {
-      border-color: rgba(1, 189, 68, 0.25);
-      box-shadow: 0 8px 24px rgba(1, 189, 68, 0.1);
-      transform: translateY(-2px);
-    }
-    .logs-empty {
-      background: linear-gradient(135deg, rgba(15, 23, 42, 0.04) 0%, rgba(15, 23, 42, 0.01) 100%);
-      border: 2px dashed rgba(15, 23, 42, 0.12);
-      border-radius: 18px;
-      padding: 48px 24px;
-      text-align: center;
-      color: #94a3b8;
-    }
-    .logs-empty svg {
-      width: 48px;
-      height: 48px;
-      margin: 0 auto 16px;
-      opacity: 0.3;
-    }
-    .status-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 999px;
-      display: inline-block;
-      box-shadow: 0 0 0 6px rgba(1, 189, 68, 0.15);
-    }
-    .status-dot.offline {
-      background: #ef4444;
-      box-shadow: 0 0 0 6px rgba(239, 68, 68, 0.12);
-    }
-    .status-dot.online {
-      background: #01BD44;
-    }
-    .tab-button.active {
-      color: #0f172a;
-      background: rgba(1, 189, 68, 0.14);
-      border-color: rgba(1, 189, 68, 0.4);
-    }
-    .tab-button {
-      transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease;
-    }
-    .tab-button:hover {
-      background: rgba(15, 23, 42, 0.05);
-      border-color: rgba(15, 23, 42, 0.16);
-    }
-    .badge {
-      padding: 2px 10px;
-      border-radius: 999px;
-      font-size: 12px;
-      font-weight: 600;
-      background: rgba(15, 23, 42, 0.06);
-      color: #0f172a;
-    }
-    .badge.station {
-      background: rgba(1, 189, 68, 0.14);
-      color: #065f2a;
-    }
-    .badge.battery {
-      background: rgba(14, 116, 144, 0.12);
-      color: #0b4b5d;
-    }
-    .badge.custom {
-      background: rgba(249, 115, 22, 0.12);
-      color: #7c2d12;
-    }
-    .json-key { color: #2563eb; }
-    .json-string { color: #16a34a; }
-    .json-number { color: #ea580c; }
-    .json-boolean, .json-null { color: #7c3aed; }
-    details > summary {
-      list-style: none;
-    }
-    details > summary::-webkit-details-marker {
-      display: none;
-    }
-  </style>
 </head>
 
-<body class="font-sans text-ink hero-gradient">
+<body class="font-sans text-ink bg-white">
   <div class="min-h-screen">
     <header class="mx-auto max-w-7xl px-6 pt-10 pb-6">
-      <div class="glass rounded-3xl px-6 py-5 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+      <div class="rounded-3xl bg-white/80 backdrop-blur-xl border border-slate-100 px-6 py-5 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div class="flex items-center gap-4">
           <img src="/assets/svgs/fanga.svg" alt="Fanga Logo" class="h-14 w-auto filter drop-shadow-sm flex-shrink-0" />
           <div>
-            <p class="text-xs uppercase tracking-[0.3em] text-slate-400">Fanga Station</p>
+            <p class="text-xs uppercase tracking-[0.3em] text-slate-400">Alioth topic listener</p>
             <h1 class="text-2xl md:text-3xl font-semibold text-ink">Visualiseur de logs</h1>
             <p class="text-sm text-slate-500">Suivi en temps réel des stations et des batteries</p>
           </div>
         </div>
         <div class="flex flex-col gap-3 md:items-end">
           <div class="flex items-center gap-3 rounded-full bg-white px-4 py-2 text-sm border border-slate-200">
-            <span id="ws-dot" class="status-dot offline"></span>
+            <span id="ws-dot" class="h-2.5 w-2.5 rounded-full bg-red-500 ring-4 ring-red-200"></span>
             <span id="ws-status" class="font-medium text-slate-600">Déconnecté</span>
           </div>
           <div class="text-sm text-slate-500">Dernière mise à jour : <span id="current-date" class="font-medium text-slate-700">–</span></div>
@@ -340,127 +57,99 @@
 
     <main class="mx-auto max-w-7xl px-6 pb-16 grid gap-6 lg:grid-cols-[300px_1fr]">
       <aside class="flex flex-col gap-6">
-        <section class="card-surface rounded-3xl p-6">
-          <div class="section-header">
-            <div class="section-header-icon">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
-              </svg>
-            </div>
+        <section class="rounded-3xl bg-white border border-slate-200 shadow-soft p-6">
+          <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between mb-6">
             <div>
               <h2 class="text-lg font-semibold">Topics actifs</h2>
               <p class="text-xs text-slate-400">Mise à jour automatique</p>
             </div>
+            <div class="flex items-center gap-3">
+              <button id="openAddTopicModal" type="button" class="inline-flex items-center justify-center gap-2 rounded-2xl bg-[#01BD44] px-4 py-2 text-sm font-semibold text-white shadow-soft transition hover:bg-[#019c3b] focus:outline-none focus:ring-2 focus:ring-[#01BD44]/30">
+                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 5v14M5 12h14" />
+                </svg>
+                Ajouter
+              </button>
+            </div>
           </div>
-          <div id="topicsList" class="topics-list">
+          <div id="topicsList" class="flex flex-col gap-3">
             <div class="text-slate-400 text-sm py-4">Chargement des topics...</div>
           </div>
         </section>
 
-        <section class="card-surface rounded-3xl p-6">
-          <h2 class="text-lg font-semibold mb-6">Filtres avancés</h2>
-          <div class="space-y-5">
-            <div class="filter-group">
-              <label class="filter-label text-xs uppercase text-slate-700 mb-3">
-                <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                </svg>
-                Période
-              </label>
-              <div class="mt-3 grid gap-3">
-                <div>
-                  <input id="dateFrom" type="datetime-local" placeholder="De (début)" class="filter-input w-full rounded-lg px-3 py-2.5 text-sm">
-                </div>
-                <div>
-                  <input id="dateTo" type="datetime-local" placeholder="À (fin)" class="filter-input w-full rounded-lg px-3 py-2.5 text-sm">
-                </div>
+        <section class="rounded-2xl bg-white border border-slate-200 shadow-soft p-4">
+          <h2 class="text-base font-semibold mb-4">Filtres avancés</h2>
+          <div class="space-y-3">
+            <div class="rounded-xl border border-slate-200 bg-slate-50 p-3 transition hover:bg-slate-100">
+              <label class="text-xs uppercase tracking-[0.15em] text-slate-600 mb-2 block">Période</label>
+              <div class="grid gap-2">
+                <input id="dateFrom" type="datetime-local" placeholder="De (début)" class="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 focus:outline-none focus:ring-1 focus:ring-[#01BD44]/40 focus:border-[#01BD44]">
+                <input id="dateTo" type="datetime-local" placeholder="À (fin)" class="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 focus:outline-none focus:ring-1 focus:ring-[#01BD44]/40 focus:border-[#01BD44]">
               </div>
             </div>
 
-            <div class="filter-group">
-              <label class="filter-label text-xs uppercase text-slate-700 mb-3">
-                <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
-                </svg>
-                Topic
-              </label>
-              <select id="topicSelect" class="filter-select mt-3 w-full rounded-lg px-3 py-2.5 text-sm appearance-none bg-no-repeat" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 fill=%220f172a%22 viewBox=%220 0 20 20%22%3E%3Cpath fill-rule=%22evenodd%22 d=%22M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z%22 clip-rule=%22evenodd%22/%3E%3C/svg%3E'); background-position: right 10px center; background-size: 1.25rem; padding-right: 32px;">
+            <div class="rounded-xl border border-slate-200 bg-slate-50 p-3 transition hover:bg-slate-100">
+              <label class="text-xs uppercase tracking-[0.15em] text-slate-600 mb-2 block">Topic</label>
+              <select id="topicSelect" class="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 focus:outline-none focus:ring-1 focus:ring-[#01BD44]/40 focus:border-[#01BD44] appearance-none">
                 <option value="">Tous les topics</option>
               </select>
             </div>
 
-            <div class="filter-actions gap-3">
-              <button id="applyFilters" type="button" class="btn-primary flex-1 rounded-lg py-2.5 text-sm">
+            <div class="flex gap-2">
+              <button id="applyFilters" type="button" class="flex-1 rounded-lg bg-[#01BD44] px-3 py-2 text-sm font-semibold text-white shadow-soft transition hover:bg-[#019c3b]">
                 Appliquer
               </button>
-              <button id="resetFilters" type="button" class="btn-secondary flex-1 rounded-lg py-2.5 text-sm">
+              <button id="resetFilters" type="button" class="flex-1 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-50">
                 Réinitialiser
               </button>
             </div>
 
-            <div class="filter-tip">
-              💡 Les nouveaux logs continuent d'arriver en temps réel même après filtrage.
+            <div class="rounded-lg border-l-4 border-[#01BD44]/70 bg-slate-50 px-3 py-2 text-xs text-slate-500">
+             Les nouveaux logs arrivent en temps réel même après filtrage.
             </div>
           </div>
         </section>
 
-        <section class="card-surface rounded-3xl p-6">
-          <div class="section-header">
-            <div class="section-header-icon">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-              </svg>
-            </div>
-            <div>
-              <h2 class="text-lg font-semibold">Batterie</h2>
-              <p class="text-xs text-slate-400">État du module</p>
-            </div>
-          </div>
-          <div class="battery-container">
-            <img src="/assets/svgs/bactery.svg" alt="Icône batterie" class="h-24 w-auto" />
-          </div>
-        </section>
       </aside>
 
       <section class="flex flex-col gap-6">
-        <div class="logs-header">
-          <h2>
-            <div class="logs-title-icon">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-              </svg>
-            </div>
-            Flux des logs
-          </h2>
-          <p>Analyse instantanée, visualisation JSON et filtres intelligents en temps réel.</p>
+<div class="rounded-3xl border border-primary/20 bg-primary/5 p-6 shadow-soft mb-6">
+          <h2 class="text-xl font-semibold text-ink">Flux des logs</h2>
+          <p class="mt-2 text-sm text-slate-600">Analyse instantanée, visualisation JSON et filtres intelligents en temps réel.</p>
         </div>
 
         <div class="flex flex-col gap-4 md:gap-6">
           <div class="flex items-center gap-3 text-sm">
-            <span class="badge">Total</span>
+            <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-600">Total</span>
             <span id="totalLogs" class="text-2xl font-bold text-primary">0</span>
           </div>
 
           <div class="flex flex-wrap gap-2">
-            <button class="tab-button active px-4 py-2 rounded-full border border-slate-200 text-sm font-medium transition-all" data-category="all">
+            <button class="category-tab active rounded-full border border-primary/30 bg-primary/15 px-4 py-2 text-sm font-medium text-primary transition" data-category="all">
               Tous <span id="count-all" class="ml-2 text-xs text-slate-500">0</span>
             </button>
-            <button class="tab-button px-4 py-2 rounded-full border border-slate-200 text-sm font-medium transition-all" data-category="station">
+            <button class="category-tab rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-100" data-category="station">
               Stations <span id="count-station" class="ml-2 text-xs text-slate-500">0</span>
             </button>
-            <button class="tab-button px-4 py-2 rounded-full border border-slate-200 text-sm font-medium transition-all" data-category="battery">
+            <button class="category-tab rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-100" data-category="battery">
               Batteries <span id="count-battery" class="ml-2 text-xs text-slate-500">0</span>
             </button>
-            <button class="tab-button px-4 py-2 rounded-full border border-slate-200 text-sm font-medium transition-all" data-category="custom">
+            <button class="category-tab rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-100" data-category="custom">
               Personnalisé <span id="count-custom" class="ml-2 text-xs text-slate-500">0</span>
             </button>
           </div>
         </div>
 
-        <div id="logs" class="space-y-4"></div>
+        <div id="logs" class="space-y-4 overflow-hidden"></div>
 
-        <div id="logsEmpty" class="hidden logs-empty">
-          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div id="paginationControls" class="hidden flex flex-wrap items-center justify-between gap-3 mt-5 pt-4">
+          <button id="prevPage" class="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-100 disabled:opacity-40 disabled:cursor-not-allowed" type="button">Précédent</button>
+          <div class="text-sm text-slate-500">Page <span id="currentPage">1</span> sur <span id="totalPages">1</span></div>
+          <button id="nextPage" class="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-100 disabled:opacity-40 disabled:cursor-not-allowed" type="button">Suivant</button>
+        </div>
+
+        <div id="logsEmpty" class="hidden rounded-3xl border border-dashed border-slate-200 bg-slate-50 p-12 text-center text-slate-500">
+          <svg class="mx-auto mb-4 h-12 w-12 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
           </svg>
           <p class="text-sm">Aucun log à afficher pour le moment.</p>
@@ -468,6 +157,39 @@
         </div>
       </section>
     </main>
+  </div>
+
+  <div id="addTopicModal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-slate-950/40 p-6" aria-hidden="true">
+    <div class="w-full max-w-xl rounded-[28px] bg-white p-8 shadow-2xl">
+      <div class="flex items-start justify-between gap-4 mb-6">
+        <div>
+          <h3 class="text-xl font-semibold text-ink">Ajouter un topic</h3>
+          <p class="text-sm text-slate-500">Enregistrer un nouveau topic dans la base Turso.</p>
+        </div>
+        <button id="closeAddTopicModal" type="button" class="text-slate-500 text-xl" aria-label="Fermer la fenêtre">✕</button>
+      </div>
+      <div class="space-y-4">
+        <div class="space-y-2">
+          <label for="newTopicName" class="block text-[11px] uppercase tracking-[0.14em] text-slate-500">Nom du topic</label>
+          <input id="newTopicName" type="text" placeholder="Nom du topic" class="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#01BD44]/40 focus:border-[#01BD44]" />
+        </div>
+        <div class="space-y-2">
+          <label for="newTopicDestination" class="block text-[11px] uppercase tracking-[0.14em] text-slate-500">Destination</label>
+          <input id="newTopicDestination" type="text" placeholder="Destination du topic" class="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#01BD44]/40 focus:border-[#01BD44]" />
+        </div>
+        <div class="space-y-2">
+          <label for="newTopicCategory" class="block text-[11px] uppercase tracking-[0.14em] text-slate-500">Catégorie</label>
+          <select id="newTopicCategory" class="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#01BD44]/40 focus:border-[#01BD44]">
+            <option value="station">station</option>
+            <option value="battery">battery</option>
+          </select>
+        </div>
+        <div class="flex justify-end gap-3 pt-4">
+          <button id="cancelAddTopic" type="button" class="rounded-2xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-50">Annuler</button>
+          <button id="saveTopic" type="button" class="rounded-2xl bg-[#01BD44] px-4 py-2 text-sm font-semibold text-white shadow-soft transition hover:bg-[#019c3b]">Enregistrer</button>
+        </div>
+      </div>
+    </div>
   </div>
 
   <script src="app.js"></script>
