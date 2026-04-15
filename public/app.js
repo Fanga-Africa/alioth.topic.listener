@@ -600,28 +600,66 @@ function initTopicModal() {
 
 function initWebSocket() {
   const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
-  const ws = new WebSocket(`${protocol}://${window.location.host}`);
+  let ws = null;
+  let pollingInterval = null;
+  let reconnectTimeout = null;
 
-  ws.onopen = () => setStatus(true);
-  ws.onclose = () => setStatus(false);
+  function startPolling() {
+    if (pollingInterval) return;
+    pollingInterval = setInterval(() => loadLogs(), 10000);
+  }
 
-  ws.onmessage = (event) => {
-    try {
-      const msg = JSON.parse(event.data);
-      if (msg.type === 'log' && msg.data) {
-        updateDate();
-        updateSessionCountsFromLog(msg.data);
-
-        if (isLogInCurrentFilter(msg.data)) {
-          state.allLogs.unshift(msg.data);
-          logsEmpty.classList.add('hidden');
-          renderLogs(state.allLogs);
-        }
-      }
-    } catch {
-      // ignore malformed messages
+  function stopPolling() {
+    if (pollingInterval) {
+      clearInterval(pollingInterval);
+      pollingInterval = null;
     }
-  };
+  }
+
+  function connect() {
+    try {
+      ws = new WebSocket(`${protocol}://${window.location.host}`);
+
+      ws.onopen = () => {
+        setStatus(true);
+        stopPolling();
+      };
+
+      ws.onclose = () => {
+        setStatus(false);
+        startPolling();
+        reconnectTimeout = setTimeout(connect, 5000);
+      };
+
+      ws.onerror = () => {
+        ws.close();
+      };
+
+      ws.onmessage = (event) => {
+        try {
+          const msg = JSON.parse(event.data);
+          if (msg.type === 'log' && msg.data) {
+            updateDate();
+            updateSessionCountsFromLog(msg.data);
+
+            if (isLogInCurrentFilter(msg.data)) {
+              state.allLogs.unshift(msg.data);
+              logsEmpty.classList.add('hidden');
+              renderLogs(state.allLogs);
+            }
+          }
+        } catch {
+          // ignore malformed messages
+        }
+      };
+    } catch {
+      setStatus(false);
+      startPolling();
+      reconnectTimeout = setTimeout(connect, 5000);
+    }
+  }
+
+  connect();
 }
 
 function init() {

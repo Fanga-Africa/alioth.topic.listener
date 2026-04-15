@@ -1,17 +1,16 @@
-const { db, initDB } = require('./server/db');
-const { seedTopics } = require('./server/seed');
-const { WebSocketServer } = require('ws');
-
-const logsRoute = require('./server/routes/logs');
-const topicsRoute = require('./server/routes/topics');
-
 // ===== 1. IMPORTS =====
 require('dotenv').config();
+const path = require('path');
 const express = require('express');
 const http = require('http');
 const { Client } = require('@stomp/stompjs');
-// ======= WebSocket pour STOMP ======
 const WebSocket = require('ws');
+const { WebSocketServer } = require('ws');
+
+const { db, initDB } = require('./server/db');
+const { seedTopics } = require('./server/seed');
+const logsRoute = require('./server/routes/logs');
+const topicsRoute = require('./server/routes/topics');
 
 // ===== 2. EXPRESS SERVER =====
 const app = express();
@@ -43,7 +42,7 @@ function broadcast(data) {
 }
 
 app.use(express.json());
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/logs', logsRoute);
 app.use('/api/topics', topicsRoute);
@@ -131,12 +130,23 @@ const PORT = process.env.PORT || 3000;
 async function start() {
   await initDB();
   await seedTopics();
-
-  server.listen(PORT, () => {
-    console.log(` Server running on http://localhost:${PORT}`);
-
-    startStomp();
-  });
+  startStomp();
 }
 
-start();
+// Initialisation : se lance une seule fois (local et cold start Vercel)
+const readyPromise = start().catch(console.error);
+
+// Export pour Vercel (serverless) — Express gère les requêtes HTTP
+module.exports = async (req, res) => {
+  await readyPromise;
+  return app(req, res);
+};
+
+// Démarrage local (node index.js)
+if (require.main === module) {
+  readyPromise.then(() => {
+    server.listen(PORT, () => {
+      console.log(`Server running on http://localhost:${PORT}`);
+    });
+  });
+}
